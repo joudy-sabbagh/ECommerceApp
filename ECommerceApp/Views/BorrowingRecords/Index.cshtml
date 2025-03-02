@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ECommerceApp.Models.BorrowingRecord>
+
+@{
+    ViewData["Title"] = "Borrowing Records";
+}
+
+<h2>Borrowing Records</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Create New</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+            <th>Member</th>
+            <th>Book</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BorrowDate</td>
+                <td>@item.ReturnDate</td>
+                <td>@item.Member?.Name</td>  
+                <td>@item.Book?.Title</td>   
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BorrowingRecordId"
+                       class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.BorrowingRecordId"
+                       class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.BorrowingRecordId"
+                       class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
